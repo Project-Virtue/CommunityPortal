@@ -1,0 +1,22 @@
+version: '3'
+services:
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_ROOT_PASSWORD: somepass
+      MYSQL_USER: portaldev
+      MYSQL_PASSWORD: portalpass
+      MYSQL_DATABASE: portal_dev
+    networks:
+      - portal-net
+    # ports:
+    #   - "3306:3306"
+  portal:
+    image: portal:tools
+    networks:
+      - portal-net
+    ports:
+      - "8080:8080"
+    
+networks:
+  portal-net:
